@@ -63,8 +63,8 @@ export default {
             window.alert('FAILED : ' + message)
           }, {
             quality: 50,
-            destinationType: Camera.DestinationType.DATA_URL,
-            sourceType: Camera.PictureSourceType.PHOTOLIBRARY
+            destinationType: window.Camera.DestinationType.DATA_URL,
+            sourceType: window.Camera.PictureSourceType.PHOTOLIBRARY
           })
         }
       }
