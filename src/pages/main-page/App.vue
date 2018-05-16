@@ -63,7 +63,8 @@ export default {
             window.alert('FAILED : ' + message)
           }, {
             quality: 50,
-            destinationType: Vue.cordova.camera.DestinationType.FILE_URI
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY
           })
         }
       }
