@@ -7,7 +7,13 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  mounted () {
+    alert(1)
+    window.echo('echome', function (echoValue) {
+      alert(echoValue === 'echome') // should alert true.
+    })
+  }
 }
 </script>
 
