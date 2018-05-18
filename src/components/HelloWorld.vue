@@ -4,13 +4,13 @@
     <div class="control-group">url:<input placeholder="请输入请求地址" v-model="url"/></div>
     <div class="control-group">method:
       <select v-model="method">
-        <option value="GET">GET</option>
-        <option value="POST">POST</option>
+        <option value="get">GET</option>
+        <option value="post">POST</option>
       </select>
     </div>
     <div class="control-group">{{dataLable}}:<textarea v-model="data"></textarea></div>
     <button @click="request">发送请求1</button>
-    <button @click="request">发送请求2</button>
+    <button @click="request2">发送请求2</button>
     <div v-if="result">{{state}}:{{result}}</div>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
   data () {
     return {
       url: '',
-      method: 'GET',
+      method: 'get',
       cordova: Vue.cordova,
       data: `
         {
@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     dataLable () {
-      return this.method === 'GET' ? 'params' : 'data'
+      return this.method === 'get' ? 'params' : 'data'
     }
   },
   methods: {
