@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import 'lib-flexible'
 import App from './App'
-// import router from './router'
+import router from './router'
 import VueCordova from 'oriente-vue-cordova'
 
 Vue.use(VueCordova, {
@@ -23,11 +23,6 @@ if (window.location.protocol === 'file:' || window.location.port === '3000') {
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  template: '<App/>',
-  components: { App },
-  data: function () {
-    return {
-      cordova: Vue.cordova
-    }
-  }
+  router,
+  render: h => h(App)
 })

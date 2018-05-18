@@ -1,113 +1,116 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+    <h2>cordova-plugin-axios</h2>
+    <div class="control-group">url:<input placeholder="请输入请求地址" v-model="url"/></div>
+    <div class="control-group">method:
+      <select v-model="method">
+        <option value="GET">GET</option>
+        <option value="POST">POST</option>
+      </select>
+    </div>
+    <div class="control-group">{{dataLable}}:<textarea v-model="data"></textarea></div>
+    <button @click="request">发送请求1</button>
+    <button @click="request">发送请求2</button>
+    <div v-if="result">{{state}}:{{result}}</div>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+let axios
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      url: '',
+      method: 'GET',
+      cordova: Vue.cordova,
+      data: `
+        {
+
+        }
+        `,
+      result: '',
+      state: ''
+    }
+  },
+  mounted () {
+    axios = this.$cordova.axios
+  },
+  computed: {
+    dataLable () {
+      return this.method === 'GET' ? 'params' : 'data'
+    }
+  },
+  methods: {
+    request () {
+      let data = JSON.parse(this.data)
+      axios &&
+        axios[this.method](this.url, data)
+          .then(res => {
+            this.state = '成功1'
+            this.result = JSON.stringify(res)
+            console.log(res)
+          })
+          .catch(err => {
+            this.state = '失败1'
+            this.result = JSON.stringify(err)
+            console.log(err)
+          })
+    },
+    request2 () {
+      let data = JSON.parse(this.data)
+      axios &&
+        axios
+          .request({
+            url: this.url,
+            data
+          })
+          .then(res => {
+            this.state = '成功2'
+            this.result = JSON.stringify(res)
+            console.log(res)
+          })
+          .catch(err => {
+            this.state = '失败2'
+            this.result = JSON.stringify(err)
+            console.log(err)
+          })
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
+<style lang="scss" scoped>
+.hello {
+  font-size: 20px;
+  text-align: left;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.control-group {
+  margin-bottom: 10px;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+div.dump {
+  background: #eee;
+  text-align: left;
+  border: solid 1px #ccc;
+  padding: 20px;
+  max-width: 600px;
+  box-sizing: border-box;
+  font-family: monospace;
+  white-space: pre;
 }
-a {
-  color: #42b983;
+input {
+  border: 1px solid #eee;
+}
+select {
+  border: 1px solid #eee;
+}
+textarea {
+  vertical-align: text-top;
+  height: 100px;
+  border: 1px solid #eee;
+}
+button {
+  border: 1px solid #00f;
 }
 </style>

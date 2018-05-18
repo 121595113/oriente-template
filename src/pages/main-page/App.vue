@@ -22,11 +22,6 @@
         Click a plugin name to run a simple test
       </p>
     </div>
-
-    <h2>`Vue.cordova`</h2>
-
-    <div class="dump" v-if="cordova">{{ cordova }}</div>
-
     <router-view/>
   </div>
 </template>
@@ -40,24 +35,17 @@ export default {
       return this.cordova.plugins.indexOf(pluginName) !== -1
     }
   },
-  mounted () {
-    this.$cordova.on('deviceready', () => {
-      window.alert(111)
-      window.echo && window.echo('echome', function (echoValue) {
-        alert(echoValue === 'echome') // should alert true.
-      })
-    })
-  },
   data: function () {
+    let that = this
     return {
       cordova: Vue.cordova,
       plugins: {
         'cordova-plugin-camera': function () {
-          if (!Vue.cordova.camera) {
+          if (!that.$cordova.camera) {
             window.alert('Vue.cordova.camera not found !')
             return
           }
-          Vue.cordova.camera.getPicture((imageURI) => {
+          that.$cordova.camera.getPicture((imageURI) => {
             window.alert('Photo URI : ' + imageURI)
           }, (message) => {
             window.alert('FAILED : ' + message)
@@ -66,6 +54,9 @@ export default {
             destinationType: window.Camera.DestinationType.DATA_URL,
             sourceType: window.Camera.PictureSourceType.PHOTOLIBRARY
           })
+        },
+        'cordova-plugin-oriente-axios': function () {
+          window.alert('请在下面模块中测试')
         }
       }
     }
@@ -104,17 +95,6 @@ body {
 .logo img {
   width: 90px;
   height: 90px;
-}
-
-div.dump {
-  background: #eee;
-  text-align: left;
-  border: solid 1px #ccc;
-  padding: 20px;
-  max-width: 600px;
-  box-sizing: border-box;
-  font-family: monospace;
-  white-space: pre;
 }
 
 div.alert {
