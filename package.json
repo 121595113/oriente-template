@@ -1,5 +1,5 @@
 {
-  "name": "oriente-vue",
+  "name": "oriente-vue-hybrid",
   "version": "0.0.1",
   "description": "A Vue.js project",
   "author": "TaoYu <121595113@qq.com>",
@@ -10,11 +10,14 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "archive": "node build/gen.js"
   },
   "dependencies": {
     "lib-flexible": "^0.3.2",
+    "mvn-dependency-gen": "0.0.2",
     "oriente-vue-cordova": "0.0.5",
+    "podspec-generator": "^0.2.2",
     "vue": "^2.5.2",
     "vue-cordova": "^0.1.2",
     "vue-router": "^3.0.1"
