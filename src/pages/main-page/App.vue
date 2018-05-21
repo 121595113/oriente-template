@@ -22,6 +22,8 @@
         Click a plugin name to run a simple test
       </p>
     </div>
+    <div>nativeRouter: <input v-model="nativeRouter" type="text"></div>
+    <router-link :to="{path: nativeRouter}">调起Native</router-link>
     <router-view/>
   </div>
 </template>
@@ -39,6 +41,7 @@ export default {
     let that = this
     return {
       cordova: Vue.cordova,
+      nativeRouter: '',
       plugins: {
         'cordova-plugin-camera': function () {
           if (!that.$cordova.camera) {
