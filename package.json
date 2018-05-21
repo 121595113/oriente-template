@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "lib-flexible": "^0.3.2",
-    "oriente-vue-cordova": "0.0.6",
+    "oriente-vue-cordova": "0.0.7",
     "vue": "^2.5.2",
     "vue-cordova": "^0.1.2",
     "vue-router": "^3.0.1"
