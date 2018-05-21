@@ -21,8 +21,17 @@ if (window.location.protocol === 'file:' || window.location.port === '3000') {
 }
 
 /* eslint-disable no-new */
-new Vue({
+let vm = new Vue({
   el: '#app',
   router,
   render: h => h(App)
+})
+
+router.beforeEach((to, from, next) => {
+  let toApp = vm.$cordova.router && vm.$cordova.router.isNative(to.fullPath)
+  if (toApp) {
+    vm.$cordova.router.push(to)
+    return next(false)
+  }
+  return next(true)
 })
