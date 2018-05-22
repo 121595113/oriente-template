@@ -5,6 +5,7 @@ import 'lib-flexible'
 import App from './App'
 import router from './router'
 import VueCordova from 'oriente-vue-cordova'
+import { isIOS } from '@/utils/ua.js'
 
 Vue.use(VueCordova, {
   optionTestKey: 'optionTestValue'
@@ -13,10 +14,10 @@ Vue.use(VueCordova, {
 Vue.config.productionTip = false
 
 // add cordova.js only if serving the app through file://
-if (window.location.protocol === 'file:' || window.location.port === '3000') {
+if (window.location.protocol === 'file:' || window.location.port === '8080') {
   var cordovaScript = document.createElement('script')
   cordovaScript.setAttribute('type', 'text/javascript')
-  cordovaScript.setAttribute('src', '../cordova.js')
+  cordovaScript.setAttribute('src', `../cordova-${isIOS ? 'ios' : 'android'}.js`)
   document.body.appendChild(cordovaScript)
 }
 

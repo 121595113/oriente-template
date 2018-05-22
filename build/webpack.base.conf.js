@@ -1,5 +1,6 @@
 'use strict'
 const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
@@ -77,6 +78,17 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, '../src/cordova*.js'),
+      to: '[name].[ext]',
+      ignore: ['.*']
+    }, {
+      from: path.resolve(__dirname, '../src/plugins'),
+      to: 'plugins',
+      ignore: ['.*']
+    }])
+  ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
     // source contains it (although only uses it if it's native).
