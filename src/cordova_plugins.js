@@ -175,7 +175,7 @@ module.exports = [
     },
     {
         "id": "cordova-plugin-oriente-router.router",
-        "file": "plugins/cordova-plugin-oriente-router/www/router.js",
+        "file": "plugins/cordova-plugin-oriente-router/www/oriente-router.js",
         "pluginId": "cordova-plugin-oriente-router",
         "clobbers": [
             "cordova.plugins.router"
