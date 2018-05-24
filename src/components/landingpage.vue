@@ -72,8 +72,11 @@ export default {
       this.loading = false
     },
     gohelp () {
-      this.$cordova.router.push('@cashalo.me.helpcenter.page', {
-        helpArr: [1, 2]
+      this.$cordova.router.push({
+        path: '@cashalo.me.helpcenter.page',
+        query: {
+          helpArr: [1, 2]
+        }
       }, () => {
         alert('suceess')
       }, (e) => {
