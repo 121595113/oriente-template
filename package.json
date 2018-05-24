@@ -11,9 +11,11 @@
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build": "node build/build.js",
-    "generator": "node build/build.js && node node_modules/.bin/walter-podspec dist --ios=8.0 --source_files=dist"
+    "zip": "node build/gen.js",
+    "generator": "node node_modules/.bin/walter-podspec dist --ios=8.0 --source_files=dist"
   },
   "dependencies": {
+    "archiver": "^2.1.1",
     "lib-flexible": "^0.3.2",
     "oriente-vue-cordova": "0.0.7",
     "vue": "^2.5.2",
