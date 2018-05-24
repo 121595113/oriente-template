@@ -69,14 +69,13 @@ export default {
       window.history.back()
     },
     getUrl () {
-       this.loading = false
+      this.loading = false
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
 .title-box{
   padding: 4%;
   width: 92%;
@@ -89,13 +88,13 @@ export default {
   position: absolute;
   left: 2%;
   top: 50%;
-  font-size: 1rem;
-  margin-top:-0.5rem;
+  font-size:rem-calc(40);
+  margin-top:rem-calc(-20);
   color: #919498 ;
 }
 .title-center p{
   text-align:center;
-  font-size: 1rem;
+  font-size:rem-calc(40);
 }
 .landing-banner{
   width: 100%;
@@ -123,7 +122,7 @@ export default {
   left: 50%;
   top: 0;
   margin-left: -44%;
-  line-height: 1rem;
+  line-height: rem-calc(40);
   padding:4.2% 0;
   opacity: 0;
 }
@@ -133,10 +132,10 @@ export default {
 .landing-how .title p{
   color: rgba(0,0,0,.8);
   letter-spacing: 0;
-  font-size: .9rem;
-  margin-left: .1rem;
-  margin-bottom: .8rem;
-  line-height: 1.4rem;
+  font-size: rem-calc(36);
+  margin-left: rem-calc(4);
+  margin-bottom: rem-calc(32);
+  line-height: rem-calc(56);
 }
 .process{
   overflow: hidden;
@@ -146,7 +145,7 @@ export default {
   float: left;
   width: 8%;
   margin-left: 1.85%;
-  font-size: .8rem;
+  font-size: rem-calc(32);
 }
 .stepNumber img{
   max-width: 100%;
@@ -154,7 +153,7 @@ export default {
   vertical-align: bottom;
 }
 .line1{
-  height: 2rem;
+  height: rem-calc(80);
 }
 .line1, .line2{
   width: 2px;
@@ -163,7 +162,7 @@ export default {
   margin: 0 auto;
 }
 .line2{
-  height: 3.8rem;
+  height: rem-calc(152);
 }
 .steText{
   overflow: hidden;
@@ -180,16 +179,16 @@ export default {
   margin-bottom: 5.56%;
 }
 .stePub h4{
-  font-size: .8rem;
+  font-size: rem-calc(32);
   color: #266bb7;
-  line-height: .8rem;
+  line-height:rem-calc(32);
 }
 .stePub p{
-  font-size: .6rem;
+  font-size: rem-calc(24);
   color: #888;
-  line-height: .8rem;
-  padding-bottom: .8rem;
-  padding-top: .3rem;
+  line-height: rem-calc(32);
+  padding-bottom: rem-calc(32);
+  padding-top: rem-calc(12);
 }
 .remarks{
   padding: 0 4% 4% 4%;
@@ -199,23 +198,23 @@ export default {
 }
 .remarks p{
   color:rgba(0, 0, 0, 0.3);
-  font-size:.6rem;
-  line-height: .9rem;
-  margin-bottom:.2rem;
+  font-size:rem-calc(24);
+  line-height: rem-calc(36);
+  margin-bottom:rem-calc(8);
 }
 .help{
- width: 92%;
- margin:0 auto 5% auto;
- overflow: hidden;
- position: relative;
+  width: 92%;
+  margin:0 auto 5% auto;
+  overflow: hidden;
+  position: relative;
 }
 .help span{
   display: block;
   background: #f0f6fb;
-  border-radius: .3rem;
-  font-size: .8rem;
+  border-radius: rem-calc(12);
+  font-size: rem-calc(36);
   color: #266bb7;
-  line-height: 2.3rem;
+  line-height: rem-calc(92);
   text-align: center;
   text-decoration: none;
   width: 100%;
