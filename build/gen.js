@@ -4,8 +4,8 @@ var fs = require('fs');
 var archiver = require('archiver');
 var path = require('path')
 // create a file to stream archive data to.
-var dirPath = path.resolve(__dirname, '..') + '/dist/'
-var desPath = path.resolve(__dirname, '..') + '/dist/ios-package/'
+var dirPath = path.resolve(__dirname, '..') + '/www/'
+var desPath = path.resolve(__dirname, '..') + '/www/ios-package/'
 if(!fs.existsSync(desPath)){//不存在就创建一个
     fs.mkdirSync(desPath)
 }
