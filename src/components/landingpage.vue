@@ -79,7 +79,7 @@ export default {
           this.$cordova.router.push({
             path: '@cashalo://me/helpcenter/page',
             query: {
-              helpArr: [1, 2]
+              helpArr: res.data
             }
           }, () => {
             alert('成功跳转')
