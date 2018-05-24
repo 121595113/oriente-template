@@ -46,7 +46,7 @@
       <p>• Please confirm with the counter clerk that your bill can apply for cashalo loan.</p>
     </div>
     <div class="help">
-      <span>Need more help？</span>
+      <span @click="gohelp">Need more help？</span>
     </div>
   </div>
 </template>
@@ -70,6 +70,15 @@ export default {
     },
     getUrl () {
       this.loading = false
+    },
+    gohelp () {
+      this.$cordova.router.push('@cashalo.me.helpcenter.page', {
+        helpArr: [1, 2]
+      }, () => {
+        alert('suceess')
+      }, (e) => {
+        alert(e)
+      })
     }
   }
 }
