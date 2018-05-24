@@ -66,22 +66,30 @@ export default {
   },
   methods: {
     goBack () {
-      window.history.back()
+      // window.history.back()
+      this.$cordova.router.back()
     },
     getUrl () {
       this.loading = false
     },
     gohelp () {
-      this.$cordova.router.push({
-        path: '@cashalo.me.helpcenter.page',
-        query: {
-          helpArr: [1, 2]
-        }
-      }, () => {
-        alert('suceess')
-      }, (e) => {
-        alert(e)
-      })
+      this.$cordova.axios.get('/common/helpcenter')
+        .then((res) => {
+          alert(`获取数据成功：${JSON.stringify(res)}`)
+          this.$cordova.router.push({
+            path: '@cashalo://me/helpcenter/page',
+            query: {
+              helpArr: [1, 2]
+            }
+          }, () => {
+            alert('成功跳转')
+          }, (e) => {
+            alert(`跳转失败：${JSON.stringify(e)}`)
+          })
+        })
+        .catch((err) => {
+          alert(`获取数据失败：${JSON.stringify(err)}`)
+        })
     }
   }
 }
