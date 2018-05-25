@@ -5,7 +5,7 @@ import 'lib-flexible'
 import App from './App'
 import router from './router'
 import VueCordova from 'oriente-vue-cordova'
-import { isIOS } from '@/utils/ua.js'
+import { isAndroid } from '@/utils/ua.js'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
@@ -20,7 +20,7 @@ Vue.config.productionTip = false
 if (window.location.protocol === 'file:' || window.location.port === '8080') {
   var cordovaScript = document.createElement('script')
   cordovaScript.setAttribute('type', 'text/javascript')
-  cordovaScript.setAttribute('src', `../cordova-${isIOS ? 'ios' : 'android'}.js`)
+  cordovaScript.setAttribute('src', `../cordova-${isAndroid ? 'android' : 'ios'}.js`)
   document.body.appendChild(cordovaScript)
 }
 
