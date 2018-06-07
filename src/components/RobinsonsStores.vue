@@ -1,7 +1,7 @@
 <template>
   <div class="landingpage"  v-loading="loading">
     <div class="title-box">
-      <div class="title-back el-icon-arrow-left" @click="goBack"></div>
+      <div class="title-back el-icon-arrow-left" @click="$router.back()"></div>
       <div class="title-center">
          <p v-html="title"></p>
       </div>
@@ -30,10 +30,6 @@ export default {
     this.getUrl()
   },
   methods: {
-    goBack () {
-      // window.history.back()
-      this.$cordova.router.back()
-    },
     getUrl () {
       this.$cordova.axios.get('http://dev-service.cashalo.com/trade/common/stores').then((response) => {
         this.storeslist = response.data.data
