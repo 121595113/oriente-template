@@ -1,17 +1,91 @@
 'use strict'
-
+// require modules
 var fs = require('fs');
+var archiver = require('archiver');
+var path = require('path')
+// create a file to stream archive data to.
+var dirPath = path.resolve(__dirname, '..') + '/www/'
+var desPath = path.resolve(__dirname, '..') + '/www/ios-package/'
+if(!fs.existsSync(desPath)){//不存在就创建一个
+    fs.mkdirSync(desPath)
+}
+console.log("dirPath:",dirPath,"\n","despath",desPath);
 
-var ws1 = fs.createWriteStream('noname.js', 'utf-8');
-ws1.write("HelloWorld asdwqf123456\n");
-ws1.write("2017 08 30 17:09:11\n",function(){
-    fs.readFile("noname.js", "utf-8", function(err, data){
-        if (err){
-            console.log(err);
-        }else{
-            console.log(data);
-        }
-    })
+var output = fs.createWriteStream(desPath + '/OrienteVue.zip');
+var archive = archiver('zip', {
+  zlib: { level: 9 } // Sets the compression level.
 });
-ws1.write("End\n");
-ws1.end();
+ 
+// listen for all archive data to be written
+// 'close' event is fired only when a file descriptor is involved
+output.on('close', function() {
+  console.log(archive.pointer() + ' total bytes');
+  console.log('archiver has been finalized and the output file descriptor has closed.');
+});
+ 
+// This event is fired when the data source is drained no matter what was the data source.
+// It is not part of this library but rather from the NodeJS Stream API.
+// @see: https://nodejs.org/api/stream.html#stream_event_end
+output.on('end', function() {
+  console.log('Data has been drained');
+});
+ 
+// good practice to catch warnings (ie stat failures and other non-blocking errors)
+archive.on('warning', function(err) {
+  if (err.code === 'ENOENT') {
+    // log warning
+  } else {
+    // throw error
+    throw err;
+  }
+});
+ 
+// good practice to catch this error explicitly
+archive.on('error', function(err) {
+  throw err;
+});
+ 
+// pipe archive data to the file
+archive.pipe(output);
+ 
+// append a file from stream
+// var file1 = __dirname + '/file1.txt';
+// archive.append(fs.createReadStream(file1), { name: 'file1.txt' });
+
+ 
+// append a file from string
+// archive.append('string cheese!', { name: 'file2.txt' });
+ 
+// append a file from buffer
+// var buffer3 = Buffer.from('buff it!');
+// archive.append(buffer3, { name: 'file3.txt' });
+ 
+// append a file
+// archive.file('file1.txt', { name: 'file4.txt' });
+ 
+// append files from a sub-directory and naming it `new-subdir` within the archive
+// archive.directory('subdir/', 'new-subdir');
+ 
+// append files from a sub-directory, putting its contents at the root of archive
+// archive.directory('subdir/', false);
+ 
+// append files from a glob pattern
+// archive.glob('subdir/*.txt');
+
+
+// console.log(toPath,'==',desPath);
+// var dirList = fs.readdirSync(path);
+// dirList.forEach(function(item){
+//   if(fs.statSync(path + '/' + item).isDirectory()){
+//     // console.log(item)
+//     archive.directory('subdir/', true);
+//   }else{
+//     console.log(item)
+//     archive.file(item, { name:item});
+//   }
+// });
+archive.directory(dirPath,false);
+// finalize the archive (ie we are done appending files but streams have to finish yet)
+// 'close', 'end' or 'finish' may be fired right after calling this method so register to them beforehand
+archive.finalize();
+
