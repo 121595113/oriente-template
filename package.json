@@ -1,9 +1,8 @@
 {
-  "name": "oriente-vue",
-  "version": "0.0.1",
-  "description": "A Vue.js project",
-  "author": "TaoYu <121595113@qq.com>",
-  "private": true,
+  "name": "{{name}}",
+  "version": "{{version}}",
+  "description": "{{description}}",
+  "author": "{{author}}",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
