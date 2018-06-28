@@ -113,11 +113,29 @@ module.exports = vuxLoader.merge(webpackConfig, {
   plugins: [
     'vux-ui',
     {
-      name: 'duplicate-style'
+      name: 'duplicate-style',
+      options: {
+        cssProcessorOptions : {
+          safe: true,
+          zindex: false,
+          autoprefixer: {
+            add: true,
+            "browsers": [
+              "iOS >= 7",
+              "Android >= 4.1"
+            ]
+          }
+        }
+      }
     },
     {
       name: 'less-theme',
       path: 'src/styles/theme.less' // 相对项目根目录路径
+    },
+    {
+      name: 'i18n',
+      vuxStaticReplace: true,
+      vuxLocale: 'en'
     },
     // {
     //   name: 'i18n',
